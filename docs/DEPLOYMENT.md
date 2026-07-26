@@ -5,24 +5,23 @@ This portfolio is a statically generated Astro site. Cloudflare runs Node.js onl
 ## Current deployment state
 
 - Repository: https://github.com/brunowinkeler/brunowinkeler.github.io
-- Local redesign branch: `redesign/astro-nano`
-- Intended production branch after review: `master`
+- GitHub default branch: `main`
+- Cloudflare production branch: `main`
 - Production domain: `bwinkeler.com`
-- Cloudflare Pages project: not created yet
-- Custom domain: not associated yet
-
-Do not attach `bwinkeler.com` until the Pages preview has been reviewed and the production branch is ready.
+- Cloudflare Pages project: active
+- Custom domain: active
 
 ## 1. Prepare the Git branch
 
-The redesign currently exists only in the local working tree. Before Cloudflare can build it:
+The deployment source of truth is `main`. For each change:
 
 1. run `npm run validate`;
-2. review `git diff` and the professional content;
-3. commit the redesign on `redesign/astro-nano`;
-4. push that branch to the existing GitHub repository.
+2. create a topic branch from `main`;
+3. review and commit the change;
+4. push the topic branch to the existing GitHub repository;
+5. review its Cloudflare preview before merging it into `main`.
 
-Do not push directly to `master` merely to obtain a preview. The existing GitHub Pages site can remain available while the Cloudflare Pages preview is reviewed.
+Do not push directly to `main` merely to obtain a preview.
 
 ## 2. Create the Pages project
 
@@ -39,7 +38,7 @@ Use these settings for the first deployment:
 | Setting | Value |
 |---|---|
 | Project name | `bwinkeler-portfolio` or another available name |
-| Production branch | `redesign/astro-nano` temporarily |
+| Production branch | `main` |
 | Framework preset | `Astro` |
 | Build command | `npm run build` |
 | Build output directory | `dist` |
@@ -68,21 +67,17 @@ Before connecting the real domain, verify at least:
 - GitHub, LinkedIn, and email links;
 - absence of private or confidential information.
 
-Cloudflare preview deployments add `X-Robots-Tag: noindex` automatically. Branch aliases use a normalized branch name, so `redesign/astro-nano` is typically available through an alias similar to `redesign-astro-nano.<project>.pages.dev`.
+Cloudflare preview deployments add `X-Robots-Tag: noindex` automatically. Branch aliases use normalized branch names, so a branch such as `feature/new-post` is typically available through an alias similar to `feature-new-post.<project>.pages.dev`.
 
 ## 4. Promote the reviewed code
 
 After the preview is approved:
 
-1. merge `redesign/astro-nano` into `master`;
-2. push `master`;
-3. in the Pages project, open **Settings** > **Builds & deployments**;
-4. edit **Production deployments** or **Branch control**;
-5. change the production branch from `redesign/astro-nano` to `master`;
-6. keep automatic production deployments enabled;
-7. confirm that the `master` deployment succeeds.
+1. merge the topic branch into `main`;
+2. push `main`;
+3. confirm that the automatic production deployment succeeds.
 
-From then on, pushes to `master` update production. Other branches and pull requests receive preview deployments without changing the custom domain.
+Pushes to `main` update production. Other branches and pull requests receive preview deployments without changing the custom domain.
 
 ## 5. Associate `bwinkeler.com`
 
@@ -127,7 +122,7 @@ Cloudflare Pages stores previous deployments. To roll back application content:
 3. use the dashboard rollback or redeploy action;
 4. verify the smoke-test routes again.
 
-A Git revert on `master` is the source-control equivalent and creates a new deployment.
+A Git revert on `main` is the source-control equivalent and creates a new deployment.
 
 ## 8. Retire the old GitHub Pages deployment
 
