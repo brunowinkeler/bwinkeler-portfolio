@@ -1,0 +1,15 @@
+.astro/
+dist/
+coverage/
+node_modules/
+css/
+js/
+scss/
+vendor/
+index.html
+package-lock.json
+package.json
+.prettierrc.json
+tsconfig.json
+src/styles/global.css
+**/*.md

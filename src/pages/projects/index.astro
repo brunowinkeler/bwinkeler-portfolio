@@ -1,0 +1,44 @@
+---
+import { getCollection } from "astro:content";
+import ProjectCard from "../../components/ProjectCard.astro";
+import { site } from "../../config/site";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { sortNewest } from "../../lib/content";
+
+const projects = sortNewest(
+  (await getCollection("projects")).filter((entry) => !entry.data.draft),
+);
+---
+
+<BaseLayout
+  title="Projects"
+  description={`Selected software and engineering projects by ${site.name}.`}
+>
+  <div class="page-shell">
+    <header class="page-hero">
+      <p class="section-kicker">Selected work</p>
+      <h1>Projects</h1>
+      <p>
+        Case studies covering the problem, constraints, implementation,
+        validation, and outcome.
+      </p>
+    </header>
+
+    <section class="section--compact" aria-label="Project case studies">
+      {
+        projects.length > 0 ? (
+          <div class="entry-grid">
+            {projects.map((project) => (
+              <ProjectCard entry={project} />
+            ))}
+          </div>
+        ) : (
+          <div class="empty-state">
+            <h3>Project studies are being prepared.</h3>
+            <p>Published entries will appear here as they are reviewed.</p>
+          </div>
+        )
+      }
+    </section>
+  </div>
+</BaseLayout>

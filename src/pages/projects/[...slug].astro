@@ -1,0 +1,98 @@
+---
+import { Image } from "astro:assets";
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { contentSlug, formatDate, sortNewest } from "../../lib/content";
+
+export async function getStaticPaths() {
+  const projects = sortNewest(
+    (await getCollection("projects")).filter((entry) => !entry.data.draft),
+  );
+
+  return projects.map((project) => ({
+    params: { slug: contentSlug(project.id) },
+    props: { project },
+  }));
+}
+
+interface Props {
+  project: CollectionEntry<"projects">;
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+---
+
+<BaseLayout
+  title={project.data.title}
+  description={project.data.description}
+  image={project.data.cover?.src}
+  type="article"
+>
+  <article class="article-shell">
+    <a class="page-hero__back" href="/projects/">← Back to projects</a>
+    <header class="article-header">
+      <div class="article-header__meta">
+        <time datetime={project.data.date.toISOString()}>
+          {formatDate(project.data.date)}
+        </time>
+      </div>
+      <h1>{project.data.title}</h1>
+      <p class="article-header__description">{project.data.description}</p>
+      {
+        project.data.tags.length > 0 && (
+          <ul class="tag-list" aria-label="Project technologies">
+            {project.data.tags.map((tag) => (
+              <li class="tag">{tag}</li>
+            ))}
+          </ul>
+        )
+      }
+    </header>
+
+    {
+      project.data.cover && (
+        <figure class="article-cover">
+          <Image
+            src={project.data.cover}
+            alt={project.data.coverAlt ?? project.data.title}
+            width={960}
+            loading="eager"
+          />
+        </figure>
+      )
+    }
+
+    <div class="prose">
+      <Content />
+    </div>
+
+    <nav class="article-actions" aria-label="Project links">
+      {
+        project.data.repositoryUrl && (
+          <a
+            class="button button--primary"
+            href={project.data.repositoryUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View source
+          </a>
+        )
+      }
+      {
+        project.data.demoUrl && (
+          <a
+            class="button button--secondary"
+            href={project.data.demoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Open project
+          </a>
+        )
+      }
+      <a class="button button--secondary" href="/projects/">All projects</a>
+    </nav>
+  </article>
+</BaseLayout>

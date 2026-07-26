@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">BW monogram</title>
+  <rect width="64" height="64" rx="16" fill="#314f59"/>
+  <path d="M15 16h13c8 0 12 3 12 9 0 4-2 7-6 8 5 1 8 4 8 9 0 7-5 10-14 10H15V16Zm12 14c4 0 6-1 6-4s-2-4-6-4h-5v8h5Zm1 16c4 0 7-1 7-5s-3-5-7-5h-6v10h6Z" fill="#fff"/>
+  <path d="m39 16 4 23 5-16h6l-8 29h-6l-4-23-4 23h-6l-3-11h7l2 7 4-32h3Z" fill="#a9c3c8" opacity=".9"/>
+</svg>

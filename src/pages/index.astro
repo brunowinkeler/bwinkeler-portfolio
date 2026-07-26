@@ -1,0 +1,148 @@
+---
+import { getCollection } from "astro:content";
+import BlogCard from "../components/BlogCard.astro";
+import ProfileHero from "../components/ProfileHero.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import WorkEntry from "../components/WorkEntry.astro";
+import { site } from "../config/site";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { sortNewest, sortWorkNewest } from "../lib/content";
+
+const projects = sortNewest(
+  (await getCollection("projects")).filter((entry) => !entry.data.draft),
+);
+const featuredProjects = projects.filter((entry) => entry.data.featured);
+const selectedProjects = (
+  featuredProjects.length > 0 ? featuredProjects : projects
+).slice(0, 4);
+const posts = sortNewest(
+  (await getCollection("blog")).filter((entry) => !entry.data.draft),
+).slice(0, 4);
+const recentWork = sortWorkNewest(
+  (await getCollection("work")).filter((entry) => !entry.data.draft),
+).slice(0, 4);
+---
+
+<BaseLayout title={site.name} description={site.description} type="profile">
+  <div class="page-shell">
+    <ProfileHero />
+  </div>
+
+  <section class="section" id="about" aria-labelledby="about-title">
+    <div class="page-shell about-grid">
+      <p class="section-kicker">About</p>
+      <div class="about-copy">
+        <h2 class="section-title" id="about-title">
+          Engineering across hardware and software boundaries.
+        </h2>
+        {site.about.map((paragraph) => <p>{paragraph}</p>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="experience" aria-labelledby="experience-title">
+    <div class="page-shell">
+      <SectionHeader
+        id="experience-title"
+        kicker="Experience"
+        title="Building embedded products across industries."
+        description="Recent roles in healthcare technology, aviation, embedded Linux, payment systems, and electronics research."
+      />
+      <div class="work-list">
+        {recentWork.map((entry) => <WorkEntry entry={entry} />)}
+      </div>
+      <div class="section-actions">
+        <a class="text-link" href="/experience/">
+          View full experience <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="capabilities-title">
+    <div class="page-shell">
+      <SectionHeader
+        id="capabilities-title"
+        kicker="Capabilities"
+        title="A practical, systems-oriented toolkit."
+        description="Verified technologies and practices drawn from embedded, safety-critical, Linux, cloud-connected, and applied engineering roles."
+      />
+      <div class="capability-grid">
+        {
+          site.capabilities.map((capability, index) => (
+            <article class="capability-card">
+              <span class="capability-card__number">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <h3>{capability.title}</h3>
+              <ul class="tag-list" aria-label={`${capability.title} skills`}>
+                {capability.items.map((item) => (
+                  <li class="tag">{item}</li>
+                ))}
+              </ul>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="projects" aria-labelledby="projects-title">
+    <div class="page-shell">
+      <SectionHeader
+        id="projects-title"
+        kicker="Selected work"
+        title="Projects built to solve real problems."
+        description="Project studies will grow to include architecture, constraints, implementation decisions, testing, and measurable outcomes."
+      />
+      {
+        selectedProjects.length > 0 ? (
+          <div class="entry-grid">
+            {selectedProjects.map((project) => (
+              <ProjectCard entry={project} />
+            ))}
+          </div>
+        ) : (
+          <div class="empty-state">
+            <h3>Project studies are being prepared.</h3>
+            <p>
+              Each entry will document the problem, technical constraints,
+              implementation, validation, and outcome.
+            </p>
+          </div>
+        )
+      }
+      <div class="section-actions">
+        <a class="text-link" href="/projects/"
+          >View all projects <span aria-hidden="true">→</span></a
+        >
+      </div>
+    </div>
+  </section>
+
+  {
+    posts.length > 0 && (
+      <section class="section" aria-labelledby="writing-title">
+        <div class="page-shell">
+          <SectionHeader
+            id="writing-title"
+            kicker="Writing"
+            title="Notes from building and debugging systems."
+            description="Technical articles with cover images, diagrams, code, and responsive media."
+          />
+          <div class="entry-grid">
+            {posts.map((post) => (
+              <BlogCard entry={post} />
+            ))}
+          </div>
+          <div class="section-actions">
+            <a class="text-link" href="/blog/">
+              Visit the writing archive <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    )
+  }
+</BaseLayout>

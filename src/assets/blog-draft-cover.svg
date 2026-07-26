@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title description">
+  <title id="title">Software and hardware circuit illustration</title>
+  <desc id="description">Abstract circuit traces connecting software and hardware blocks</desc>
+  <rect width="1200" height="675" fill="#e9efeb"/>
+  <g fill="none" stroke="#476d76" stroke-width="8" opacity=".75">
+    <path d="M80 165h235l80 80h190l95-95h440"/>
+    <path d="M80 500h180l110-110h245l105 105h400"/>
+    <path d="M210 80v190l95 95v230"/>
+    <path d="M930 80v170l-100 100v245"/>
+  </g>
+  <g fill="#314f59">
+    <circle cx="80" cy="165" r="18"/><circle cx="1120" cy="150" r="18"/>
+    <circle cx="80" cy="500" r="18"/><circle cx="1120" cy="495" r="18"/>
+    <circle cx="210" cy="80" r="18"/><circle cx="305" cy="595" r="18"/>
+    <circle cx="930" cy="80" r="18"/><circle cx="830" cy="595" r="18"/>
+  </g>
+  <rect x="420" y="245" width="360" height="185" rx="34" fill="#fff" stroke="#314f59" stroke-width="8"/>
+  <text x="600" y="330" fill="#172126" font-family="monospace" font-size="40" text-anchor="middle">firmware</text>
+  <text x="600" y="382" fill="#526068" font-family="monospace" font-size="25" text-anchor="middle">hardware ↔ software</text>
+</svg>

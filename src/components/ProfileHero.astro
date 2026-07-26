@@ -1,0 +1,37 @@
+---
+import { Image } from "astro:assets";
+import profilePhoto from "../../img/profile.png";
+import { site } from "../config/site";
+import SocialLinks from "./SocialLinks.astro";
+---
+
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero__copy">
+    <p class="eyebrow">{site.title}</p>
+    <h1 id="hero-title">{site.name}</h1>
+    <p class="hero__lead">{site.introduction}</p>
+    <p class="hero__location">{site.location}</p>
+    <div class="hero__actions">
+      <a class="button button--primary" href="/experience/">View experience</a>
+      <a class="button button--secondary" href={`mailto:${site.email}`}>
+        Get in touch
+      </a>
+    </div>
+    <SocialLinks />
+  </div>
+
+  <div class="hero__visual">
+    <figure class="profile-photo">
+      <Image
+        src={profilePhoto}
+        alt={site.profileImageAlt}
+        width={320}
+        height={305}
+        format="webp"
+        quality={82}
+        loading="eager"
+        fetchpriority="high"
+      />
+    </figure>
+  </div>
+</section>

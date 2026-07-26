@@ -1,0 +1,45 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+import { contentUrl, formatDate } from "../lib/content";
+
+interface Props {
+  entry: CollectionEntry<"blog">;
+}
+
+const { entry } = Astro.props;
+---
+
+<a class="entry-card" href={contentUrl("blog", entry.id)}>
+  {
+    entry.data.cover && (
+      <div class="entry-card__media">
+        <Image
+          src={entry.data.cover}
+          alt={entry.data.coverAlt ?? entry.data.title}
+          width={720}
+          loading="lazy"
+        />
+      </div>
+    )
+  }
+  <div class="entry-card__body">
+    <div class="entry-card__meta">
+      <time datetime={entry.data.date.toISOString()}>
+        {formatDate(entry.data.date)}
+      </time>
+      <span class="entry-card__arrow" aria-hidden="true">↗</span>
+    </div>
+    <h3>{entry.data.title}</h3>
+    <p>{entry.data.description}</p>
+    {
+      entry.data.tags.length > 0 && (
+        <ul class="tag-list" aria-label="Article topics">
+          {entry.data.tags.map((tag) => (
+            <li class="tag">{tag}</li>
+          ))}
+        </ul>
+      )
+    }
+  </div>
+</a>

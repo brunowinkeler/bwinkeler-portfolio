@@ -1,0 +1,101 @@
+---
+import profilePhoto from "../../img/profile.png";
+import { site } from "../config/site";
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  noindex?: boolean;
+  type?: "website" | "article" | "profile";
+}
+
+const {
+  title,
+  description,
+  image = "/og-default.svg",
+  noindex = false,
+  type = "website",
+} = Astro.props;
+const baseUrl = Astro.site ?? new URL(site.url);
+const canonicalUrl = new URL(Astro.url.pathname, baseUrl);
+const imageUrl = new URL(image, baseUrl);
+const profileImageUrl = new URL(profilePhoto.src, baseUrl);
+const fullTitle = title === site.name ? title : `${title} | ${site.name}`;
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  name: fullTitle,
+  description,
+  url: canonicalUrl.href,
+  mainEntity: {
+    "@type": "Person",
+    name: site.name,
+    jobTitle: site.title,
+    description: site.description,
+    url: site.url,
+    image: profileImageUrl.href,
+    email: `mailto:${site.email}`,
+    address: {
+      "@type": "Place",
+      name: site.location,
+    },
+    sameAs: site.socialLinks
+      .filter((link) => link.name !== "Email")
+      .map((link) => link.href),
+    knowsAbout: site.capabilities.flatMap((group) => group.items),
+  },
+};
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="generator" content={Astro.generator} />
+<meta name="theme-color" content="#f5f7f4" />
+
+<script is:inline>
+  (() => {
+    const theme = (() => {
+      try {
+        return localStorage.getItem("theme") === "dark" ? "dark" : "light";
+      } catch {
+        return "light";
+      }
+    })();
+    document.documentElement.dataset.theme = theme;
+  })();
+</script>
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="canonical" href={canonicalUrl} />
+<link rel="sitemap" href="/sitemap-index.xml" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title={`${site.name} RSS feed`}
+  href="/rss.xml"
+/>
+
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+<meta name="author" content={site.name} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+
+<meta property="og:type" content={type} />
+<meta property="og:site_name" content={site.name} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:image" content={imageUrl} />
+<meta property="og:locale" content="en_US" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageUrl} />
+
+<script
+  is:inline
+  type="application/ld+json"
+  set:html={JSON.stringify(structuredData)}
+/>

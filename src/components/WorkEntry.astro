@@ -1,0 +1,63 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { formatDateRange } from "../lib/content";
+
+interface Props {
+  detailed?: boolean;
+  entry: CollectionEntry<"work">;
+}
+
+const { detailed = false, entry } = Astro.props;
+const { data } = entry;
+---
+
+<article class:list={["work-entry", { "work-entry--detailed": detailed }]}>
+  <header class="work-entry__header">
+    <div>
+      {
+        data.companyUrl ? (
+          <a
+            class="work-entry__company"
+            href={data.companyUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {data.company}
+          </a>
+        ) : (
+          <span class="work-entry__company">{data.company}</span>
+        )
+      }
+      <h3>{data.role}</h3>
+    </div>
+    <div class="work-entry__meta">
+      <time datetime={data.dateStart.toISOString()}>
+        {formatDateRange(data.dateStart, data.dateEnd)}
+      </time>
+      {data.location && <span>{data.location}</span>}
+      {data.employmentType && <span>{data.employmentType}</span>}
+    </div>
+  </header>
+
+  {data.summary && <p class="work-entry__summary">{data.summary}</p>}
+
+  {
+    data.technologies.length > 0 && (
+      <ul class="tag-list" aria-label={`Technologies used at ${data.company}`}>
+        {data.technologies.map((technology) => (
+          <li class="tag">{technology}</li>
+        ))}
+      </ul>
+    )
+  }
+
+  {
+    detailed && data.highlights.length > 0 && (
+      <ul class="work-entry__highlights">
+        {data.highlights.map((highlight) => (
+          <li>{highlight}</li>
+        ))}
+      </ul>
+    )
+  }
+</article>

@@ -1,0 +1,38 @@
+---
+import Head from "../components/Head.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import { site } from "../config/site";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  noindex?: boolean;
+  type?: "website" | "article" | "profile";
+}
+
+const { title, description, image, noindex, type } = Astro.props;
+---
+
+<!doctype html>
+<html lang={site.locale} data-theme="light">
+  <head>
+    <Head
+      title={title}
+      description={description}
+      image={image}
+      noindex={noindex}
+      type={type}
+    />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <SiteHeader />
+    <main id="main-content">
+      <slot />
+    </main>
+    <SiteFooter />
+  </body>
+</html>

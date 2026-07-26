@@ -1,0 +1,19 @@
+---
+import { site } from "../config/site";
+---
+
+<ul class="social-links" aria-label="Professional profiles and contact">
+  {
+    site.socialLinks.map((link) => (
+      <li>
+        <a
+          href={link.href}
+          target={link.name === "Email" ? undefined : "_blank"}
+          rel={link.name === "Email" ? undefined : "noopener noreferrer"}
+        >
+          {link.name}
+        </a>
+      </li>
+    ))
+  }
+</ul>

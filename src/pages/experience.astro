@@ -1,0 +1,62 @@
+---
+import { getCollection } from "astro:content";
+import WorkEntry from "../components/WorkEntry.astro";
+import { site } from "../config/site";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { sortWorkNewest } from "../lib/content";
+
+const work = sortWorkNewest(
+  (await getCollection("work")).filter((entry) => !entry.data.draft),
+);
+---
+
+<BaseLayout
+  title="Experience"
+  description={`Professional experience, education, and languages for ${site.name}.`}
+>
+  <div class="page-shell">
+    <header class="page-hero">
+      <p class="section-kicker">Experience</p>
+      <h1>Professional background</h1>
+      <p>
+        Embedded and software engineering experience across healthcare,
+        aviation, payment systems, electronics R&D, computer vision, and
+        robotics.
+      </p>
+    </header>
+
+    <section class="section--compact" aria-labelledby="work-history-title">
+      <h2 class="visually-hidden" id="work-history-title">Work history</h2>
+      <div class="work-list work-list--detailed">
+        {work.map((entry) => <WorkEntry entry={entry} detailed />)}
+      </div>
+    </section>
+
+    <section class="section background-grid" aria-labelledby="education-title">
+      <div>
+        <p class="section-kicker">Education</p>
+        <h2 class="background-grid__title" id="education-title">
+          {site.education.degree}
+        </h2>
+        <p class="background-grid__primary">{site.education.institution}</p>
+        <p>{site.education.focus}</p>
+        <p class="background-grid__meta">{site.education.dateRange}</p>
+      </div>
+
+      <div>
+        <p class="section-kicker">Languages</p>
+        <h2 class="background-grid__title">Professional communication</h2>
+        <ul class="language-list">
+          {
+            site.languages.map((language) => (
+              <li>
+                <strong>{language.name}</strong>
+                <span>{language.level}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

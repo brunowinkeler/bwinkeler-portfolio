@@ -1,0 +1,49 @@
+---
+import { getCollection } from "astro:content";
+import BlogCard from "../../components/BlogCard.astro";
+import { site } from "../../config/site";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { sortNewest } from "../../lib/content";
+
+const posts = sortNewest(
+  (await getCollection("blog")).filter((entry) => !entry.data.draft),
+);
+---
+
+<BaseLayout
+  title="Writing"
+  description={`Technical articles and engineering notes by ${site.name}.`}
+  noindex={posts.length === 0}
+>
+  <div class="page-shell">
+    <header class="page-hero">
+      <p class="section-kicker">Writing</p>
+      <h1>Technical notes</h1>
+      <p>
+        Articles about embedded software, connected systems, debugging, and the
+        engineering decisions behind working products.
+      </p>
+    </header>
+
+    <section class="section--compact" aria-label="Published articles">
+      {
+        posts.length > 0 ? (
+          <div class="entry-grid">
+            {posts.map((post) => (
+              <BlogCard entry={post} />
+            ))}
+          </div>
+        ) : (
+          <div class="empty-state">
+            <h3>No published articles yet.</h3>
+            <p>
+              The blog supports Markdown, MDX, cover images, inline media,
+              syntax highlighting, RSS, and draft articles. The first public
+              article will appear here when it is ready.
+            </p>
+          </div>
+        )
+      }
+    </section>
+  </div>
+</BaseLayout>

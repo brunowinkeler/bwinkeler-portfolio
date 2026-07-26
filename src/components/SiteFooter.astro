@@ -1,0 +1,20 @@
+---
+import { getCollection } from "astro:content";
+import { site } from "../config/site";
+
+const hasPublishedPosts = (await getCollection("blog")).some(
+  (entry) => !entry.data.draft,
+);
+---
+
+<footer class="site-footer">
+  <div class="footer-shell">
+    <p>&copy; {new Date().getFullYear()} {site.name}</p>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="/experience/">Experience</a>
+      <a href="/projects/">Projects</a>
+      {hasPublishedPosts && <a href="/blog/">Writing</a>}
+      <a href={`mailto:${site.email}`}>Contact</a>
+    </nav>
+  </div>
+</footer>
