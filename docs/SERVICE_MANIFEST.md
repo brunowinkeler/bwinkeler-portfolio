@@ -5,7 +5,7 @@
 - Platform architecture version: 1.3
 - Service ID: `portfolio`
 - Product name: BWinkeler Portfolio
-- Repository: https://github.com/brunowinkeler/brunowinkeler.github.io
+- Repository: https://github.com/brunowinkeler/bwinkeler-portfolio
 - Owner: Bruno Winkeler
 - Criticality: family
 

@@ -4,7 +4,7 @@ This portfolio is a statically generated Astro site. Cloudflare runs Node.js onl
 
 ## Current deployment state
 
-- Repository: https://github.com/brunowinkeler/brunowinkeler.github.io
+- Repository: https://github.com/brunowinkeler/bwinkeler-portfolio
 - GitHub default branch: `main`
 - Cloudflare production branch: `main`
 - Production domain: `bwinkeler.com`
@@ -30,7 +30,7 @@ Do not push directly to `main` merely to obtain a preview.
 3. Select **Create application**.
 4. Select **Pages**.
 5. Select **Import an existing Git repository** or **Connect to Git**.
-6. Authorize the Cloudflare Pages GitHub application for `brunowinkeler/brunowinkeler.github.io`.
+6. Authorize the Cloudflare Pages GitHub application for `brunowinkeler/bwinkeler-portfolio`.
 7. Select that repository and choose **Begin setup**.
 
 Use these settings for the first deployment:
@@ -126,7 +126,7 @@ A Git revert on `main` is the source-control equivalent and creates a new deploy
 
 ## 8. Retire the old GitHub Pages deployment
 
-The repository currently also backs the legacy `brunowinkeler.github.io` site. Do not disable it before the Cloudflare Pages custom domain is active and verified.
+The repository was renamed from `brunowinkeler.github.io` to `bwinkeler-portfolio`. A GitHub user page is served only from a repository named exactly `brunowinkeler.github.io`, so the rename already stops the legacy `https://brunowinkeler.github.io` site from being served by this repository. Keep the Cloudflare Pages custom domain active and verified as the sole production origin.
 
 After the cutover succeeds:
 

@@ -8,7 +8,7 @@ tags:
   - Accessibility
   - Cloudflare Pages
 featured: true
-repositoryUrl: "https://github.com/brunowinkeler/brunowinkeler.github.io"
+repositoryUrl: "https://github.com/brunowinkeler/bwinkeler-portfolio"
 ---
 
 ## Context
