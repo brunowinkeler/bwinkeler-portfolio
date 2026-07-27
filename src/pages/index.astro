@@ -60,34 +60,6 @@ const recentWork = sortWorkNewest(
     </div>
   </section>
 
-  <section class="section" aria-labelledby="capabilities-title">
-    <div class="page-shell">
-      <SectionHeader
-        id="capabilities-title"
-        kicker="Capabilities"
-        title="A practical, systems-oriented toolkit."
-        description="Verified technologies and practices drawn from embedded, safety-critical, Linux, cloud-connected, and applied engineering roles."
-      />
-      <div class="capability-grid">
-        {
-          site.capabilities.map((capability, index) => (
-            <article class="capability-card">
-              <span class="capability-card__number">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <h3>{capability.title}</h3>
-              <ul class="tag-list" aria-label={`${capability.title} skills`}>
-                {capability.items.map((item) => (
-                  <li class="tag">{item}</li>
-                ))}
-              </ul>
-            </article>
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
   <section class="section" id="projects" aria-labelledby="projects-title">
     <div class="page-shell">
       <SectionHeader

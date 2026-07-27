@@ -63,7 +63,7 @@ Before connecting the real domain, verify at least:
 - `/rss.xml`;
 - `/sitemap-index.xml`;
 - desktop and mobile layouts;
-- light theme default and dark theme selection;
+- dark theme default and light theme selection;
 - GitHub, LinkedIn, and email links;
 - absence of private or confidential information.
 

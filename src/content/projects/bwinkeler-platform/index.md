@@ -23,7 +23,7 @@ The redesign keeps the delivery model deliberately simple: a static site generat
 
 - Generate static, cacheable output.
 - Keep JavaScript optional for core navigation and content.
-- Make light mode the default while preserving an explicit dark theme.
+- Make dark mode the default while preserving an explicit light theme.
 - Optimize the existing portrait during the build.
 - Support responsive article covers and inline technical images.
 - Validate formatting, linting, types, tests, and production output in CI.

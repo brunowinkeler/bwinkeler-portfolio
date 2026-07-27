@@ -2,7 +2,7 @@
 
 Static portfolio and technical writing site for Bruno Winkeler. The redesign uses Astro, TypeScript, semantic HTML, and a small custom CSS system. It is intended for deployment to Cloudflare Pages at `bwinkeler.com`.
 
-The visual direction combines Astro Nano's lightweight editorial structure with a recruiter-friendly profile header. Light mode is the default; dark mode is an explicit visitor preference.
+The visual direction combines Astro Nano's lightweight editorial structure with a recruiter-friendly profile header. Dark mode is the default, while visitors can explicitly select light mode.
 
 ## Requirements
 

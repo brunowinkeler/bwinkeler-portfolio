@@ -495,38 +495,18 @@ main {
     margin-top: 1.15rem;
 }
 
-.capability-grid,
 .entry-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
     gap: 1rem;
 }
 
-.capability-card,
 .entry-card,
 .empty-state {
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     background: color-mix(in srgb, var(--surface) 88%, transparent);
     box-shadow: var(--shadow-soft);
-}
-
-.capability-card {
-    min-height: 15rem;
-    padding: 1.45rem;
-}
-
-.capability-card__number {
-    color: var(--accent);
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    font-size: 0.78rem;
-}
-
-.capability-card h3 {
-    margin: 2.8rem 0 1rem;
-    color: var(--text);
-    font-size: 1.2rem;
-    letter-spacing: -0.02em;
 }
 
 .tag-list {
@@ -1046,17 +1026,6 @@ a.work-entry__company:hover {
         border-radius: 1.5rem;
     }
 
-    .capability-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .capability-card {
-        min-height: auto;
-    }
-
-    .capability-card h3 {
-        margin-top: 1.5rem;
-    }
 }
 
 @media (max-width: 42rem) {
@@ -1210,7 +1179,6 @@ a.work-entry__company:hover {
         padding-block: 2rem;
     }
 
-    .capability-card,
     .entry-card,
     .empty-state,
     .profile-photo {
