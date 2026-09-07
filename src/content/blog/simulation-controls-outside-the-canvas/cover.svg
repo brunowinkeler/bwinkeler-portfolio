@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title description">
+  <title id="title">Simulation canvas beside an HTML control panel</title>
+  <desc id="description">A simulation canvas beside an HTML control panel, connected by a bridge labelled extern C</desc>
+  <rect width="1200" height="675" fill="#e9efeb"/>
+  <rect x="70" y="120" width="620" height="440" rx="18" fill="#172126" stroke="#314f59" stroke-width="8"/>
+  <path d="M120 500q210-300 520-30" fill="none" stroke="#7fb6a8" stroke-width="8" stroke-linecap="round"/>
+  <g fill="#7fb6a8">
+    <circle cx="120" cy="500" r="14"/>
+    <circle cx="640" cy="470" r="14"/>
+  </g>
+  <text x="380" y="180" fill="#8fa3ab" font-family="monospace" font-size="30" text-anchor="middle">canvas</text>
+  <rect x="800" y="120" width="330" height="440" rx="18" fill="#fff" stroke="#314f59" stroke-width="8"/>
+  <g fill="#526068" font-family="monospace" font-size="22">
+    <text x="840" y="180">gravity</text>
+    <text x="840" y="280">length</text>
+    <text x="840" y="380">damping</text>
+    <text x="840" y="480">time scale</text>
+  </g>
+  <g stroke="#476d76" stroke-width="8" stroke-linecap="round">
+    <path d="M840 210h250"/>
+    <path d="M840 310h250"/>
+    <path d="M840 410h250"/>
+    <path d="M840 510h250"/>
+  </g>
+  <g fill="#314f59">
+    <circle cx="1000" cy="210" r="18"/>
+    <circle cx="900" cy="310" r="18"/>
+    <circle cx="1060" cy="410" r="18"/>
+    <circle cx="950" cy="510" r="18"/>
+  </g>
+  <path d="M690 340h110" fill="none" stroke="#314f59" stroke-width="8"/>
+  <path d="M780 322l30 18-30 18z" fill="#314f59"/>
+  <text x="745" y="310" fill="#314f59" font-family="monospace" font-size="24" text-anchor="middle">extern "C"</text>
+</svg>
