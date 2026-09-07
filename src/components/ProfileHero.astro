@@ -5,33 +5,30 @@ import { site } from "../config/site";
 import SocialLinks from "./SocialLinks.astro";
 ---
 
-<section class="hero" aria-labelledby="hero-title">
-  <div class="hero__copy">
-    <p class="eyebrow">{site.title}</p>
-    <h1 id="hero-title">{site.name}</h1>
-    <p class="hero__lead">{site.introduction}</p>
-    <p class="hero__location">{site.location}</p>
-    <div class="hero__actions">
-      <a class="button button--primary" href="/experience/">View experience</a>
-      <a class="button button--secondary" href={`mailto:${site.email}`}>
-        Get in touch
-      </a>
-    </div>
-    <SocialLinks />
-  </div>
-
-  <div class="hero__visual">
-    <figure class="profile-photo">
+<section class="masthead" aria-labelledby="hero-title">
+  <div class="masthead__aside">
+    <figure class="masthead__portrait">
       <Image
         src={profilePhoto}
         alt={site.profileImageAlt}
-        width={320}
-        height={305}
+        width={288}
+        height={274}
         format="webp"
         quality={82}
         loading="eager"
         fetchpriority="high"
       />
     </figure>
+    <p class="masthead__meta label">
+      <span>{site.title}</span>
+      <span>{site.location}</span>
+    </p>
+  </div>
+
+  <div>
+    <h1 id="hero-title">{site.name}</h1>
+    <p class="masthead__lead">{site.introduction}</p>
+    {site.about.map((paragraph) => <p class="masthead__about">{paragraph}</p>)}
+    <SocialLinks />
   </div>
 </section>

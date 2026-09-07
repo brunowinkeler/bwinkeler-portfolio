@@ -27,11 +27,11 @@ const projects = sortNewest(
     <section class="section--compact" aria-label="Project case studies">
       {
         projects.length > 0 ? (
-          <div class="entry-grid">
+          <ul class="rule-list">
             {projects.map((project) => (
               <ProjectCard entry={project} />
             ))}
-          </div>
+          </ul>
         ) : (
           <div class="empty-state">
             <h3>Project studies are being prepared.</h3>

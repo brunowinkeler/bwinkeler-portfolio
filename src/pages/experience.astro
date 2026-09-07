@@ -27,36 +27,41 @@ const work = sortWorkNewest(
 
     <section class="section--compact" aria-labelledby="work-history-title">
       <h2 class="visually-hidden" id="work-history-title">Work history</h2>
-      <div class="work-list work-list--detailed">
+      <ul class="rule-list">
         {work.map((entry) => <WorkEntry entry={entry} detailed />)}
-      </div>
+      </ul>
     </section>
 
-    <section class="section background-grid" aria-labelledby="education-title">
-      <div>
-        <p class="section-kicker">Education</p>
-        <h2 class="background-grid__title" id="education-title">
-          {site.education.degree}
-        </h2>
-        <p class="background-grid__primary">{site.education.institution}</p>
-        <p>{site.education.focus}</p>
-        <p class="background-grid__meta">{site.education.dateRange}</p>
-      </div>
+    <section class="grid-section" aria-labelledby="education-title">
+      <h2 class="grid-section__label" id="education-title">Education</h2>
+      <ul class="rule-list">
+        <li>
+          <div class="rule-row">
+            <span class="rule-row__date">{site.education.dateRange}</span>
+            <div>
+              <h3 class="rule-row__title">{site.education.degree}</h3>
+              <span class="rule-row__meta">{site.education.institution}</span>
+              <p class="rule-row__note">{site.education.focus}</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </section>
 
-      <div>
-        <p class="section-kicker">Languages</p>
-        <h2 class="background-grid__title">Professional communication</h2>
-        <ul class="language-list">
-          {
-            site.languages.map((language) => (
-              <li>
-                <strong>{language.name}</strong>
-                <span>{language.level}</span>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
+    <section class="grid-section" aria-labelledby="languages-title">
+      <h2 class="grid-section__label" id="languages-title">Languages</h2>
+      <ul class="rule-list">
+        {
+          site.languages.map((language) => (
+            <li>
+              <div class="rule-row">
+                <span class="rule-row__date">{language.name}</span>
+                <span class="rule-row__note">{language.level}</span>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
     </section>
   </div>
 </BaseLayout>

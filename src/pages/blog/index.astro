@@ -28,19 +28,15 @@ const posts = sortNewest(
     <section class="section--compact" aria-label="Published articles">
       {
         posts.length > 0 ? (
-          <div class="entry-grid">
+          <ul class="rule-list">
             {posts.map((post) => (
               <BlogCard entry={post} />
             ))}
-          </div>
+          </ul>
         ) : (
           <div class="empty-state">
             <h3>No published articles yet.</h3>
-            <p>
-              The blog supports Markdown, MDX, cover images, inline media,
-              syntax highlighting, RSS, and draft articles. The first public
-              article will appear here when it is ready.
-            </p>
+            <p>The first public article will appear here when it is ready.</p>
           </div>
         )
       }

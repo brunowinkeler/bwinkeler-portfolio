@@ -11,53 +11,48 @@ const { detailed = false, entry } = Astro.props;
 const { data } = entry;
 ---
 
-<article class:list={["work-entry", { "work-entry--detailed": detailed }]}>
-  <header class="work-entry__header">
+<li>
+  <div class="rule-row">
+    <time class="rule-row__date" datetime={data.dateStart.toISOString()}>
+      {formatDateRange(data.dateStart, data.dateEnd)}
+    </time>
     <div>
+      <h3 class="rule-row__title">{data.role}</h3>
+      <span class="rule-row__meta">
+        {
+          data.companyUrl ? (
+            <a href={data.companyUrl} target="_blank" rel="noopener noreferrer">
+              {data.company}
+            </a>
+          ) : (
+            data.company
+          )
+        }
+        {data.location && <> &middot; {data.location}</>}
+        {data.employmentType && <> &middot; {data.employmentType}</>}
+      </span>
+      {data.summary && <p class="rule-row__note">{data.summary}</p>}
       {
-        data.companyUrl ? (
-          <a
-            class="work-entry__company"
-            href={data.companyUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {data.company}
-          </a>
-        ) : (
-          <span class="work-entry__company">{data.company}</span>
+        detailed && data.highlights.length > 0 && (
+          <ul class="rule-row__highlights">
+            {data.highlights.map((highlight) => (
+              <li>{highlight}</li>
+            ))}
+          </ul>
         )
       }
-      <h3>{data.role}</h3>
+      {
+        data.technologies.length > 0 && (
+          <ul
+            class="tag-list"
+            aria-label={`Technologies used at ${data.company}`}
+          >
+            {data.technologies.map((technology) => (
+              <li class="tag">{technology}</li>
+            ))}
+          </ul>
+        )
+      }
     </div>
-    <div class="work-entry__meta">
-      <time datetime={data.dateStart.toISOString()}>
-        {formatDateRange(data.dateStart, data.dateEnd)}
-      </time>
-      {data.location && <span>{data.location}</span>}
-      {data.employmentType && <span>{data.employmentType}</span>}
-    </div>
-  </header>
-
-  {data.summary && <p class="work-entry__summary">{data.summary}</p>}
-
-  {
-    data.technologies.length > 0 && (
-      <ul class="tag-list" aria-label={`Technologies used at ${data.company}`}>
-        {data.technologies.map((technology) => (
-          <li class="tag">{technology}</li>
-        ))}
-      </ul>
-    )
-  }
-
-  {
-    detailed && data.highlights.length > 0 && (
-      <ul class="work-entry__highlights">
-        {data.highlights.map((highlight) => (
-          <li>{highlight}</li>
-        ))}
-      </ul>
-    )
-  }
-</article>
+  </div>
+</li>
