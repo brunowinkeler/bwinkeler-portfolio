@@ -30,7 +30,7 @@ const { Content } = await render(post);
   type="article"
 >
   <article class="article-shell">
-    <a class="page-hero__back" href="/blog/">← Back to writing</a>
+    <a class="page-hero__back" href="/blog/">← Back to blog</a>
     <header class="article-header">
       <div class="article-header__meta">
         <time datetime={post.data.date.toISOString()}>
@@ -73,7 +73,7 @@ const { Content } = await render(post);
     </div>
 
     <nav class="article-actions" aria-label="Article navigation">
-      <a class="button button--secondary" href="/blog/">All writing</a>
+      <a class="button button--secondary" href="/blog/">All posts</a>
     </nav>
   </article>
 </BaseLayout>

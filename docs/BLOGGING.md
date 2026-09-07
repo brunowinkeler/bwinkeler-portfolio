@@ -98,7 +98,7 @@ This validates front matter, TypeScript, formatting, lint, tests, and the produc
 6. review the preview URL;
 7. merge into the production branch.
 
-The first published article automatically makes **Writing** visible in the site navigation and home page. It is also added to `/blog/`, `/rss.xml`, and the sitemap.
+The first published article automatically makes **Blog** visible in the site navigation and home page. It is also added to `/blog/`, `/rss.xml`, and the sitemap.
 
 ## Correct or unpublish a post
 

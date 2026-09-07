@@ -11,7 +11,7 @@ const navigation = [
   { href: "/", label: "Home" },
   { href: "/experience/", label: "Experience" },
   { href: "/projects/", label: "Projects" },
-  ...(hasPublishedPosts ? [{ href: "/blog/", label: "Writing" }] : []),
+  ...(hasPublishedPosts ? [{ href: "/blog/", label: "Blog" }] : []),
 ];
 
 function isCurrent(href: string) {

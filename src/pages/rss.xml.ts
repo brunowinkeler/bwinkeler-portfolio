@@ -10,7 +10,7 @@ export async function GET() {
     );
 
     return rss({
-        title: `${site.name} — Writing`,
+        title: `${site.name} — Blog`,
         description: `Technical articles and engineering notes by ${site.name}.`,
         site: site.url,
         items: posts.map((post) => ({

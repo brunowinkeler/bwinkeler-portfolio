@@ -27,23 +27,13 @@ const recentWork = sortWorkNewest(
   <div class="page-shell">
     <ProfileHero />
 
-    {
-      posts.length > 0 && (
-        <section class="grid-section" aria-labelledby="writing-title">
-          <h2 class="grid-section__label" id="writing-title">
-            Writing
-          </h2>
-          <ul class="rule-list">
-            {posts.map((post) => (
-              <BlogCard entry={post} />
-            ))}
-          </ul>
-          <a class="grid-section__more" href="/blog/">
-            All posts
-          </a>
-        </section>
-      )
-    }
+    <section class="grid-section" aria-labelledby="experience-title">
+      <h2 class="grid-section__label" id="experience-title">Experience</h2>
+      <ul class="rule-list">
+        {recentWork.map((entry) => <WorkEntry entry={entry} />)}
+      </ul>
+      <a class="grid-section__more" href="/experience/">Full history</a>
+    </section>
 
     <section class="grid-section" aria-labelledby="projects-title">
       <h2 class="grid-section__label" id="projects-title">Projects</h2>
@@ -67,12 +57,22 @@ const recentWork = sortWorkNewest(
       <a class="grid-section__more" href="/projects/">All projects</a>
     </section>
 
-    <section class="grid-section" aria-labelledby="experience-title">
-      <h2 class="grid-section__label" id="experience-title">Experience</h2>
-      <ul class="rule-list">
-        {recentWork.map((entry) => <WorkEntry entry={entry} />)}
-      </ul>
-      <a class="grid-section__more" href="/experience/">Full history</a>
-    </section>
+    {
+      posts.length > 0 && (
+        <section class="grid-section" aria-labelledby="blog-title">
+          <h2 class="grid-section__label" id="blog-title">
+            Blog
+          </h2>
+          <ul class="rule-list">
+            {posts.map((post) => (
+              <BlogCard entry={post} />
+            ))}
+          </ul>
+          <a class="grid-section__more" href="/blog/">
+            All posts
+          </a>
+        </section>
+      )
+    }
   </div>
 </BaseLayout>
